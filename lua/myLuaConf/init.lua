@@ -12,4 +12,3 @@ require("myLuaConf.plugins")
 require("myLuaConf.LSPs")
 
 require("myLuaConf.colorscheme")
-

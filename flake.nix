@@ -58,6 +58,9 @@
 				lua = with pkgs; [
 					lua-language-server
 				];
+				python = with pkgs; [
+					pyright
+				];
 			};
 
 			startupPlugins = {
@@ -72,10 +75,6 @@
 					ui = [
 						catppuccin-nvim
 					];
-					# extra = [
-					# 	vim-tmux-navigator
-					# ];
-
 				};
 
 				# themer = with plugins;
@@ -99,12 +98,15 @@
 
 					treesitter = [
 						nvim-treesitter-textobjects
+						nvim-treesitter-context
 						nvim-treesitter.withAllGrammars
 					];
 					ui = [
 						nvim-colorizer-lua
 						bufferline-nvim
 						lualine-nvim
+						indent-blankline-nvim
+						autoclose-nvim
 					];
 					telescope = [
 						telescope-nvim
@@ -122,6 +124,9 @@
 						trouble-nvim
 						undotree
 						eyeliner-nvim
+						comment-nvim
+						which-key-nvim
+						fidget-nvim
 					];
 
 				};
@@ -170,13 +175,15 @@
 				suffix-LD = true;
 				wrapRc = true;
 				configDirName = "nvim-nixcats";
-				#aliases = [ "catvim" ];
+				aliases = [ "nvim" ];
 # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
 			};
 			categories = {
 				general = true;
 				markdown = true;
 				latex = true;
+				lua = true;
+				python = true;
 				themer = true;
 				colorscheme = "catppuccin-mocha";
 			};

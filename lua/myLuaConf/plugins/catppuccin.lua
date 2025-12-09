@@ -45,7 +45,7 @@ return {
 				peach = "#f99a6a",
 				yellow = "#ffc777",
 				green = "#2df4c0",
-				teal = "#94e2d5",
+				teal = "#40e0d0",
 				sky = "#04dff9",
 				sapphire = "#74c7ec",
 				blue = "#4f99ff",
@@ -64,6 +64,12 @@ return {
 				crust = "#212337",
 			}
 		},
+		custom_highlights = function(C)
+			return{
+				WinSeparator = { fg = C.lavender },
+				TreesitterContextBottom = { style = {} },
+			}
+		end,
 		auto_integrations = true,
 		integrations = {
 			gitsigns = true,

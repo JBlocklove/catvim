@@ -16,24 +16,6 @@ return {
     dep_of = { "cmp-cmdline" },
   },
   {
-    "luasnip",
-    for_cat = "general.blink",
-    dep_of = { "blink.cmp" },
-    after = function (_)
-      local luasnip = require 'luasnip'
-      require('luasnip.loaders.from_vscode').lazy_load()
-      luasnip.config.setup {}
-
-      local ls = require('luasnip')
-
-      vim.keymap.set({ "i", "s" }, "<M-n>", function()
-          if ls.choice_active() then
-              ls.change_choice(1)
-          end
-      end)
-    end,
-  },
-  {
     "colorful-menu.nvim",
     for_cat = "general.blink",
     on_plugin = { "blink.cmp" },
@@ -81,6 +63,7 @@ return {
         },
         completion = {
           menu = {
+			border = "single",
             draw = {
               treesitter = { 'lsp' },
               components = {
@@ -97,6 +80,9 @@ return {
           },
           documentation = {
             auto_show = true,
+			window = {
+				border = "single",
+			},
           },
         },
         snippets = {

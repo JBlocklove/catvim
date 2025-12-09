@@ -2,7 +2,7 @@ return {
 	"lualine.nvim",
 	for_cat = "general.ui",
 	event = "DeferredUIEnter",
-	after = function (plugin)
+	after = function()
 		local colors = require("catppuccin.palettes").get_palette("mocha")
 		-- local navic = require 'nvim-navic'
 

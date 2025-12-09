@@ -1,7 +1,17 @@
 return{
 	"bufferline.nvim",
 	for_cat = "general.ui",
-	after = function (plugin)
+	lazy = false,
+    keys = {
+      {"<Tab>", "<cmd>BufferLineCycleNext<CR>", mode = {"n"}, noremap = true, desc = "Next tab"},
+      {"<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", mode = {"n"}, noremap = true, desc = "Prev tab"},
+      {"<leader><Tab>", "<cmd>BufferLineMoveNext<CR>", mode = {"n"}, noremap = true, desc = "Move tab to next position"},
+      {"<leader><S-Tab>", "<cmd>BufferLineMovePrev<CR>", mode = {"n"}, noremap = true, desc = "Move tab to previous position"},
+      {"<leader>bj", "<cmd>BufferLinePick<CR>", mode = {"n"}, noremap = true, desc = "[B]ufferline [J]ump to other tab"},
+      {"<leader>bd", "<cmd>BufferLinePickClose<CR>", mode = {"n"}, noremap = true, desc = "[B]ufferline [Delete] tab"},
+      {"<leader>bp", "<cmd>BufferLineTogglePin<CR>", mode = {"n"}, noremap = true, desc = "[B]ufferline [P]in tab"},
+    },
+	after = function()
 		local palette = require("catppuccin.palettes").get_palette("mocha")
 		require('bufferline').setup{ ---@diagnostic disable-line: redundant-parameter
 			options = {
@@ -39,6 +49,9 @@ return{
 				custom = {
 					all = {
 						separator = { fg = palette.overlay2 },
+						fill = { bg = palette.base },
+						trunc_marker = { fg = palette.yellow, bg = palette.base },
+
 					},
 				},
 			},

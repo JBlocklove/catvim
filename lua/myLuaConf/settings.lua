@@ -35,7 +35,7 @@ vim.opt.expandtab = false -- convert tabs to spaces
 vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 4 -- insert 4 spaces for a tab
 vim.opt.softtabstop = 4 -- insert 4 spaces for a tab
-vim.opt.cursorline = true -- highlight the current line
+vim.opt.cursorline = false -- highlight the current line
 vim.opt.number = true -- set numbered lines
 vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.numberwidth = 2 -- set number column width to 2 {default 4}
@@ -43,7 +43,7 @@ vim.opt.signcolumn = "yes" -- always show the sign column otherwise it would shi
 vim.opt.wrap = true -- display lines as one long line
 vim.opt.spell = false
 vim.opt.spelllang = "en"
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 3
 vim.opt.sidescrolloff = 8
 vim.opt.gdefault = true
 vim.opt.incsearch = true
@@ -57,4 +57,4 @@ vim.opt.modeline = true
 
 
 vim.opt.shortmess:append "c"
-vim.g.python3_host_prog = '/usr/bin/python3'
+-- vim.g.python3_host_prog = '/usr/bin/python3'

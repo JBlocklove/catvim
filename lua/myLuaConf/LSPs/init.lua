@@ -22,9 +22,6 @@ require('lze').load {
 		"nvim-lspconfig",
 		for_cat = "general.lsp",
 		on_require = { "lspconfig" },
-		-- NOTE: define a function for lsp,
-		-- and it will run for all specs with type(plugin.lsp) == table
-		-- when their filetype trigger loads them
 		lsp = function(plugin)
 			vim.lsp.config(plugin.name, plugin.lsp or {})
 			vim.lsp.enable(plugin.name)
@@ -37,7 +34,6 @@ require('lze').load {
 	},
 	{
 		"mason.nvim",
-		-- only run it when not on nix
 		enabled = not catUtils.isNixCats,
 		on_plugin = { "nvim-lspconfig" },
 		load = function(name)
@@ -63,13 +59,8 @@ require('lze').load {
   --   end,
   -- },
 	{
-		-- name of the lsp
 		"lua_ls",
 		enabled = nixCats('lua') or false,
-		-- provide a table containing filetypes,
-		-- and then whatever your functions defined in the function type specs expect.
-		-- in our case, it just expects the normal lspconfig setup options,
-		-- but with a default on_attach and capabilities
 		lsp = {
 			-- if you provide the filetypes it doesn't ask lspconfig for the filetypes
 			filetypes = { 'lua' },
@@ -189,9 +180,20 @@ require('lze').load {
   -- },
 }
 
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "󰌶", texthl = "DiagnosticSignHint" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+vim.diagnostic.config {
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "󰌶",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+		}
+	}
+}
 
-vim.diagnostic.config({virtual_text = false})
