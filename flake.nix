@@ -77,13 +77,6 @@
 					];
 				};
 
-				# themer = with plugins;
-				# 	(builtins.getAttr (categories.colorscheme or "moonlight") {
-				# 		"catppuccin" = catppuccin-nvim;
-				# 		"tokyonight" = tokyonight-nvim;
-				# 		"moonlight" = ghostmatter;
-				# 	}
-				# );
 			};
 
 			optionalPlugins = {

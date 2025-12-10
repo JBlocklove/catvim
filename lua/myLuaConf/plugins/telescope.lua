@@ -91,6 +91,7 @@ return {
       { "<leader>fc", function() return require('telescope.builtin').commands() end, mode = {"n"}, desc = '[F]ind [C]ommands with Telescope', },
       { "<leader>fm", function() return require('telescope.builtin').keymaps() end, mode = {"n"}, desc = '[F]ind Key[m]aps', },
       { "<leader>fq", function() return require('telescope.builtin').quickfix() end, mode = {"n"}, desc = '[F]ind in [Q]uickfix', },
+      { "<leader>fq", function() return require('telescope.builtin').spell() end, mode = {"n"}, desc = '[F]ind [S]pelling', },
     },
     load = function (name)
         vim.cmd.packadd(name)

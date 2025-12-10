@@ -23,6 +23,5 @@ return {
 		}
 		vim.g.vimtex_quickfix_autoclose_after_keystrokes = "10"
 
-		vim.opt.conceallevel = 2
 	end,
 }
