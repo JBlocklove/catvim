@@ -28,20 +28,23 @@ return {
 			require("blink.cmp").setup({
 				keymap =  {
 					preset = 'none',
-					["<C-n>"] = { "select_next", "fallback" },
-					["<C-p>"] = { "select_prev", "fallback" },
+					["<Tab>"] = { "select_next", "fallback" },
+					["<S-Tab>"] = { "select_prev", "fallback" },
 
 					["<C-o>"] = { "select_and_accept", "fallback" },
 					["<C-s>"] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
 
-					["<C-j>"] = {"snippet_forward", "fallback"},
-					["<C-k>"] = {"snippet_backward", "fallback"},
+					["<C-n>"] = {"snippet_forward", "fallback"},
+					["<C-p>"] = {"snippet_backward", "fallback"},
 
 					["<C-b>"] = { "scroll_documentation_up", "fallback" },
 					["<C-f>"] = { "scroll_documentation_down", "fallback" },
 				},
 				cmdline = {
 					enabled = true,
+					keymap = {
+						["<C-o>"] = { "select_and_accept", "fallback" },
+					},
 					completion = {
 						menu = {
 							auto_show = true,
@@ -118,6 +121,13 @@ return {
 						},
 						snippets = {
 							score_offset = 40,
+							transform_items = function(ctx,items)
+								for _, item in ipairs(items) do
+									item.kind_icon = ''
+									item.kind_name = 'Snippet'
+								end
+								return items
+							end
 						},
 						cmp_cmdline = {
 							name = 'cmp_cmdline',
