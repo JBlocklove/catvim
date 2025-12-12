@@ -10,7 +10,15 @@ return {
 			require("luasnip.loaders.from_lua").lazy_load{
 				paths = snippet_paths
 			}
-			luasnip.config.setup {}
+			luasnip.config.setup {
+				enable_autosnippets = true,
+			}
+
+			vim.keymap.set({ "i", "s" }, "<C-f>", function()
+				if luasnip.choice_active() then
+					luasnip.change_choice(1)
+				end
+			end)
 		end,
 	},
 }

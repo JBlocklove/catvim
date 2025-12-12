@@ -40,6 +40,7 @@ require("lze").load {
 	{ import = "config.plugins.comment" },
 	{ import = "config.plugins.whichkey" },
 	{ import = "config.plugins.fidget" },
+	{ import = "config.plugins.todo" },
 }
 vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = false })
 

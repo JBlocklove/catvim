@@ -100,6 +100,7 @@
 						lualine-nvim
 						indent-blankline-nvim
 						autoclose-nvim
+						todo-comments-nvim
 					];
 					telescope = [
 						telescope-nvim
