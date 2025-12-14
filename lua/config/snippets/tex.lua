@@ -20,7 +20,79 @@ recursive_itemize = function ()
 	)
 end
 
+local recursive_usepackage
+recursive_usepackage = function ()
+	return sn(
+		nil,
+		c(1, {
+			t(""),
+			sn(nil, { t({ "", "\\usepackage{ " }), i(1), t({"}\n"}), d(2, recursive_usepackage, {}) }),
+		})
+	)
+end
+
 return{
+	--------------
+	-- PREAMBLE --
+	--------------
+	s("dclass", fmt(
+		[[
+		\documentclass{}{{{}}}
+		{}
+		]],
+		{
+			c(1, {
+				t(""),
+				fmt("[{}]", {i(1,"opts")}),
+			}),
+			i(2, "article"), i(0)
+		}
+	)),
+
+	s("template", fmt(
+		[[
+		\documentclass{}{{{}}}
+
+		{}
+
+		\begin{{document}}
+			{}
+		\end{{document}}
+		]],
+		{
+			c(1, {
+				t(""),
+				fmt("[{}]", {i(1,"opts")}),
+			}),
+			i(2, "article"), d(3, recursive_usepackage, {}), i(0)
+		}
+	)),
+
+	s("nc", fmt(
+		[[
+		\newcommand{{{}}}[{}]{{{}}}{}
+		]],
+		{
+			i(1,"cmdName"), i(2, "options"), i(3, "commands"), i(0)
+		}
+	)),
+
+	s("up", fmt(
+		[[
+		\usepackage{}{{{}}}{}
+		]],
+		{
+			c(1, {
+				t(""),
+				fmt("[{}]", {i(1,"opts")}),
+			}),
+			i(2,"package"),i(0)
+		}
+	)),
+
+	-----------------
+	-- ENVIRONMENT --
+	-----------------
 	s("beg", fmt(
 		[[
 		\begin{{{}}}
@@ -32,7 +104,7 @@ return{
 		}
 	)),
 
-	s("itemize", fmt(
+	s("item", fmt(
 		[[
 		\begin{{itemize}}
 			\item {}
@@ -42,5 +114,119 @@ return{
 		{
 			i(1), d(2, recursive_itemize, {}),
 		}
-	))
+	)),
+
+	s("it", fmt(
+		[[
+		\item {}
+		{}
+		]],
+		{i(1), i(0)}
+	)),
+
+	s("enum", fmt(
+		[[
+		\begin{{enumerate}}{}
+			\item {}
+			{}
+		\end{{enumerate}}
+		]],
+		{
+			c(1, {
+				t(""),
+				t("[a]"),
+				t("[i]"),
+				fmt("[{}]", {i(1,"opts")}),
+			}),
+			i(2), d(2, recursive_itemize, {}),
+		}
+	)),
+
+	s("abs", fmt(
+		[[
+		\begin{{abstract}}
+			{}
+		\end{{abstract}}
+		]],
+		{
+			i(0)
+		}
+	)),
+
+	s("fig", fmt(
+		[[
+		\begin{{figure}}[{}]
+			\centering
+			\includegraphics[width={}]{}
+			\caption{{{}}}
+			\label{{fig:{}}}
+		\end{{figure}}
+		{}
+		]],
+		{
+			i(1,"htpb"), i(2,"0.8\\textwidth"), i(3), i(4), rep(3), i{0}
+		}
+	)),
+
+	----------
+	-- MATH --
+	----------
+	s("fraction", fmt(
+		[[
+		\frac{{{}}}{{{}}}{}
+		]],
+		{
+			i(1),i(2),i(0)
+		}
+	)),
+
+	----------
+	-- TEXT --
+	----------
+	s("it", fmt(
+		[[
+		\textit{{{}}}{}
+		]],
+		{
+			i(1),i(0)
+		}
+	)),
+
+	s("bf", fmt(
+		[[
+		\textbf{{{}}}{}
+		]],
+		{
+			i(1),i(0)
+		}
+	)),
+
+	s("tt", fmt(
+		[[
+		\texttt{{{}}}{}
+		]],
+		{
+			i(1),i(0)
+		}
+	)),
+
+	s("sc", fmt(
+		[[
+		\textsc{{{}}}{}
+		]],
+		{
+			i(1),i(0)
+		}
+	)),
+
+	s("ul", fmt(
+		[[
+		\underline{{{}}}{}
+		]],
+		{
+			i(1),i(0)
+		}
+	)),
+
 }
+
