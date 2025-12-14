@@ -68,6 +68,7 @@ return {
 			return{
 				WinSeparator = { fg = C.lavender },
 				TreesitterContextBottom = { style = {} },
+				CursorLineNr = { fg = C.flamingo, style = {"bold"} }
 			}
 		end,
 		auto_integrations = true,

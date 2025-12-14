@@ -20,17 +20,6 @@ recursive_itemize = function ()
 	)
 end
 
-local recursive_usepackage
-recursive_usepackage = function ()
-	return sn(
-		nil,
-		c(1, {
-			t(""),
-			sn(nil, { t({ "", "\\usepackage{ " }), i(1), t({"}\n"}), d(2, recursive_usepackage, {}) }),
-		})
-	)
-end
-
 return{
 	--------------
 	-- PREAMBLE --
@@ -64,7 +53,7 @@ return{
 				t(""),
 				fmt("[{}]", {i(1,"opts")}),
 			}),
-			i(2, "article"), d(3, recursive_usepackage, {}), i(0)
+			i(2, "article"), i(3), i(0)
 		}
 	)),
 
@@ -171,7 +160,7 @@ return{
 	----------
 	-- MATH --
 	----------
-	s("fraction", fmt(
+	s("frac", fmt(
 		[[
 		\frac{{{}}}{{{}}}{}
 		]],
