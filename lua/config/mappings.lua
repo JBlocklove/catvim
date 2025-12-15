@@ -13,7 +13,7 @@ vim.keymap.set("n", "<leader>v", ":vsplit<CR>")
 vim.keymap.set("n", "<leader>h", ":split<CR>")
 
 -- Clear highlights
-vim.keymap.set("n", "<leader>ch", ":noh<CR>")
+vim.keymap.set("n", "<leader>q", ":noh<CR>")
 
 -- Better searching
 vim.keymap.set("n", "/", "/\\v")

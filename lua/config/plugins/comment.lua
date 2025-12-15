@@ -5,12 +5,12 @@ return{
 	after = function()
 		require("Comment").setup{
 			toggler = {
-				line = "<leader>cc",
+				line = "<leader>c",
 				block = "<leader>bc"
 			},
 			opleader = {
 				line = "<leader>c",
-				block = "<leader>b"
+				block = "<leader>bc"
 			},
 			mappings = {
 				basic = true,
