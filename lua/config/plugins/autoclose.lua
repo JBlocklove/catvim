@@ -6,6 +6,7 @@ return{
 			options = {
 				pair_spaces = true,
 				disabled_filetypes = { "text", "mail", "markdown" },
+				disable_command_mode = true,
 			}
 		}
 	end,

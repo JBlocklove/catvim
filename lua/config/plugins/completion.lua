@@ -28,14 +28,14 @@ return {
 			require("blink.cmp").setup({
 				keymap =  {
 					preset = 'none',
-					["<Tab>"] = { "select_next", "fallback" },
-					["<S-Tab>"] = { "select_prev", "fallback" },
+					["<Down>"] = { "select_next", "fallback_to_mappings" },
+					["<Up>"] = { "select_prev", "fallback_to_mappings" },
 
 					["<C-o>"] = { "select_and_accept", "fallback" },
 					["<C-s>"] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
 
-					["<C-n>"] = {"snippet_forward", "fallback"},
-					["<C-p>"] = {"snippet_backward", "fallback"},
+					["<C-n>"] = {"snippet_forward", "fallback_to_mappings"},
+					["<C-p>"] = {"snippet_backward", "fallback_to_mappings"},
 
 					["<C-b>"] = { "scroll_documentation_up", "fallback" },
 					["<C-f>"] = { "scroll_documentation_down", "fallback" },
