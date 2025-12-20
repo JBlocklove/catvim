@@ -44,20 +44,20 @@ require('lze').load {
 			require('mason-lspconfig').setup { automatic_installation = true, }
 		end,
 	},
-  -- {
-  --   -- lazydev makes your lsp way better in your config without needing extra lsp configuration.
-  --   "lazydev.nvim",
-  --   for_cat = "neonixdev",
-  --   cmd = { "LazyDev" },
-  --   ft = "lua",
-  --   after = function(_)
-  --     require('lazydev').setup({
-  --       library = {
-  --         { words = { "nixCats" }, path = (nixCats.nixCatsPath or "") .. '/lua' },
-  --       },
-  --     })
-  --   end,
-  -- },
+	-- {
+	-- 	-- lazydev makes your lsp way better in your config without needing extra lsp configuration.
+	-- 	"lazydev.nvim",
+	-- 	for_cat = "neonixdev",
+	-- 	cmd = { "LazyDev" },
+	-- 	ft = "lua",
+	-- 	after = function(_)
+	-- 		require('lazydev').setup({
+	-- 			library = {
+	-- 				{ words = { "nixCats" }, path = (nixCats.nixCatsPath or "") .. '/lua' },
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"lua_ls",
 		enabled = nixCats('lua') or false,
@@ -87,6 +87,18 @@ require('lze').load {
 		enabled = nixCats("latex") or false,
 		lsp = {
 			filetypes = { "tex", "bib" },
+			on_attach = function(client,bufnr)
+                local group = vim.api.nvim_create_augroup("texlabunlistfix", { clear = true })
+                vim.api.nvim_create_autocmd("BufEnter", {
+                    group = group,
+                    pattern = "*.tex",
+                    callback = function()
+                        if not vim.bo.buflisted then
+                            vim.bo.buflisted = true
+                        end
+                    end,
+                })
+            end,
 			settings = {
 				texlab = {
 					auxDirectory = ".",
