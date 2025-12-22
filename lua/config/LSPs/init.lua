@@ -26,11 +26,11 @@ require('lze').load {
 			vim.lsp.config(plugin.name, plugin.lsp or {})
 			vim.lsp.enable(plugin.name)
 		end,
-		before = function(_)
-			vim.lsp.config('*', {
-				on_attach = require('config.LSPs.on_attach'),
-			})
-		end,
+		-- before = function(_)
+		-- 	vim.lsp.config('*', {
+		-- 		on_attach = require('config.LSPs.on_attach'),
+		-- 	})
+		-- end,
 	},
 	{
 		"mason.nvim",
@@ -87,7 +87,7 @@ require('lze').load {
 		enabled = nixCats("latex") or false,
 		lsp = {
 			filetypes = { "tex", "bib" },
-			on_attach = function(client,bufnr)
+			on_attach = function(_)
                 local group = vim.api.nvim_create_augroup("texlabunlistfix", { clear = true })
                 vim.api.nvim_create_autocmd("BufEnter", {
                     group = group,
@@ -193,6 +193,12 @@ require('lze').load {
 }
 
 vim.diagnostic.config {
+	float = {
+		border = "single",
+	},
+	virtual_text = {
+		severity = { min = vim.diagnostic.severity.ERROR }
+	},
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "",
@@ -208,4 +214,11 @@ vim.diagnostic.config {
 		}
 	}
 }
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+	callback = function (event)
+		require("config.LSPs.on_attach")(nil, event.buf)
+	end,
+})
 
