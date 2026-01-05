@@ -43,6 +43,13 @@ return{
 		        max_name_length = 15,
 		        tab_size = 15,
 				separator_style = {"│", "│"},
+
+				-- Don't show quickfix buffers in bufferline
+				custom_filter = function(buf_number, _)
+					if vim.bo[buf_number].filetype == "qf" then return false end
+					return true
+				end,
+
 			},
 			highlights = require("catppuccin.groups.integrations.bufferline").get_theme{
 				styles = { "italic", "bold" },
