@@ -19,5 +19,6 @@ return {
 		}
 		vim.g.vimtex_quickfix_autoclose_after_keystrokes = "10"
 
+		vim.g.vimtex_indent_enabled = "0"
 	end,
 }
